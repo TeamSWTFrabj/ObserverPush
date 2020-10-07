@@ -9,12 +9,28 @@ namespace ObserverPush
         public int Measurement { get; set; }
     }
 
-    public interface ISubject
+    public abstract class ISubject
     {
-        void Attach(IObserver obs);
-        void Detach(IObserver obs);
-        void Notify();
+        private List<IObserver> observers = new List<IObserver>();
 
-        SubjectData GetState();
+
+        public void Attach(IObserver obs)
+        {
+            observers.Add(obs);
+        }
+
+        public void Detach(IObserver obs)
+        {
+            observers.Remove(obs);
+        }
+
+        public void Notify()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
+        }
+
     }
 }

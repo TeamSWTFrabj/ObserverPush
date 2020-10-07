@@ -6,9 +6,9 @@ namespace ObserverPush
 {
     public class ConcreteObserver : IObserver
     {
-        private ISubject mySubject;
+        private ConcreteSubject mySubject;
 
-        public ConcreteObserver(ISubject subject)
+        public ConcreteObserver(ConcreteSubject subject)
         {
             mySubject = subject;
             mySubject.Attach(this);
